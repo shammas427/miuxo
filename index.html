@@ -1,3 +1,13 @@
+<div class="chat-box">
+    <div class="chat-header">MIUXO AI Chat</div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="എന്തെങ്കിലും ചോദിക്കൂ..." onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
 async function sendMessage() {
     let input = document.getElementById("user-input");
     let messageArea = document.getElementById("chat-messages");
@@ -5,38 +15,33 @@ async function sendMessage() {
     if (input.value.trim() !== "") {
         const userText = input.value;
         
-        // 1. ഉപയോക്താവിന്റെ മെസ്സേജ് സ്ക്രീനിൽ കാണിക്കുന്നു
+        // ഉപയോക്താവിന്റെ മെസ്സേജ്
         let userDiv = document.createElement("p");
         userDiv.className = "user-msg";
         userDiv.textContent = userText;
         messageArea.appendChild(userDiv);
         
-        input.value = ""; // ഇൻപുട്ട് ബോക്സ് ക്ലിയർ ചെയ്യുന്നു
-        messageArea.scrollTop = messageArea.scrollHeight;
-
-        // 2. AI മറുപടിക്ക് വേണ്ടിയുള്ള വെയിറ്റിംഗ് മെസ്സേജ്
+        input.value = "";
+        
+        // AI വെയിറ്റിംഗ് മെസ്സേജ്
         let botDiv = document.createElement("p");
         botDiv.className = "bot-msg";
-        botDiv.textContent = "ആലോചിക്കുന്നു...";
+        botDiv.textContent = "MIUXO ചിന്തിക്കുന്നു...";
         messageArea.appendChild(botDiv);
+        messageArea.scrollTop = messageArea.scrollHeight;
 
         try {
-            // ഇവിടെയാണ് നമ്മൾ സെർവറിലേക്ക് മെസ്സേജ് അയക്കുന്നത്
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userText })
             });
-            
             const data = await response.json();
-            
-            // 3. സെർവറിൽ നിന്ന് കിട്ടുന്ന യഥാർത്ഥ മറുപടി കാണിക്കുന്നു
-            botDiv.textContent = data.reply;
-            
+            botDiv.textContent = data.reply; // യഥാർത്ഥ AI മറുപടി
         } catch (error) {
-            botDiv.textContent = "ക്ഷമിക്കണം, ബന്ധിപ്പിക്കുന്നതിൽ ഒരു തകരാർ!";
+            botDiv.textContent = "Error: AI-യുമായി ബന്ധപ്പെടാൻ കഴിഞ്ഞില്ല.";
         }
-        
         messageArea.scrollTop = messageArea.scrollHeight;
     }
 }
+</script>
