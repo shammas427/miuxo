@@ -47,3 +47,27 @@ function toggleDark() {
         <button onclick="sendMessage()">Send</button>
     </div>
 </div>
+function sendMessage() {
+    let input = document.getElementById("user-input");
+    let messageArea = document.getElementById("chat-messages");
+
+    if (input.value.trim() !== "") {
+        // ഉപയോക്താവിന്റെ മെസ്സേജ് ചേർക്കുന്നു
+        let userDiv = document.createElement("p");
+        userDiv.className = "user-msg";
+        userDiv.textContent = input.value;
+        messageArea.appendChild(userDiv);
+
+        // AI മറുപടി (ഒരു ചെറിയ ഡെമോ)
+        setTimeout(() => {
+            let botDiv = document.createElement("p");
+            botDiv.className = "bot-msg";
+            botDiv.textContent = "നിങ്ങൾ പറഞ്ഞത്: '" + input.value + "'. ഞാൻ ഇത് പഠിച്ചു കൊണ്ടിരിക്കുകയാണ്!";
+            messageArea.appendChild(botDiv);
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }, 1000);
+
+        input.value = "";
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }
+}
