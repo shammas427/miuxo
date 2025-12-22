@@ -1,28 +1,16 @@
-/* ലോഗോ സർക്കിൾ ഡിസൈൻ */
-.logo-circle {
-    width: 60px;
-    height: 60px;
-    background: #4a00e0;
-    color: white;
-    font-size: 30px;
+/* സ്റ്റാറ്റസ് ബാർ ഡിസൈൻ */
+.stats {
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #4a00e0;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    box-shadow: 0 0 20px rgba(74, 0, 224, 0.4);
-    animation: pulse 2s infinite;
-}
-
-/* ലോഗോ മിന്നുന്ന ആനിമേഷൻ */
-@keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 0, 224, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(74, 0, 224, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 0, 224, 0); }
-}
-
-h1 {
-    letter-spacing: 2px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* പഴയ ടെക്സ്റ്റ് മാറ്റിയതിന് ശേഷം പാരാഗ്രാഫ് സ്റ്റൈൽ */
+p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
 }
