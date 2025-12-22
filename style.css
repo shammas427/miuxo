@@ -94,3 +94,12 @@ body.dark-theme p {
     border-radius: 5px;
     cursor: pointer;
 }
+body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+.container { width: 100%; max-width: 500px; text-align: center; }
+.chat-box { background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+.chat-messages { height: 400px; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.bot-msg { background: #e4e6eb; padding: 10px; border-radius: 10px; align-self: flex-start; max-width: 80%; text-align: left; }
+.user-msg { background: #007bff; color: white; padding: 10px; border-radius: 10px; align-self: flex-end; max-width: 80%; text-align: right; }
+.chat-input-area { display: flex; padding: 10px; border-top: 1px solid #ddd; }
+input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
+button { background: #007bff; color: white; border: none; padding: 10px 15px; margin-left: 5px; border-radius: 5px; cursor: pointer; }
