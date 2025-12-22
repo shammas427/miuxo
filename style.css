@@ -1,45 +1,64 @@
+/* മൊത്തത്തിലുള്ള ഡിസൈൻ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #f0f0f0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
 }
 
-.chat-container {
-  width: 400px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  overflow: hidden;
+/* കാർഡ് സ്റ്റൈൽ */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    transition: transform 0.3s ease;
 }
 
-#chat-box {
-  height: 400px;
-  overflow-y: auto;
-  padding: 20px;
-  border-bottom: 1px solid #ccc;
+.container:hover {
+    transform: translateY(-10px);
 }
 
-.message {
-  margin: 10px 0;
+h1 {
+    color: #4a00e0;
+    margin-bottom: 15px;
+    font-size: 24px;
 }
 
-.user { color: blue; }
-.ai { color: green; }
-
-#user-input {
-  width: calc(100% - 80px);
-  padding: 10px;
-  border: none;
-  border-top: 1px solid #ccc;
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 25px;
 }
 
-#send-btn {
-  width: 60px;
-  border: none;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
+/* ബട്ടൺ ഡിസൈൻ */
+.btn {
+    background: #8e2de2;
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
