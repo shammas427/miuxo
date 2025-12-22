@@ -45,3 +45,60 @@ async function sendMessage() {
     }
 }
 </script>
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIUXO AI - സ്മാർട്ട് ചാറ്റ്</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MIUXO AI</h1>
+        <div class="chat-box">
+            <div id="chat-messages" class="chat-messages">
+                <p class="bot-msg">ഹലോ! ഞാൻ MIUXO AI. എനിക്ക് എങ്ങനെ സഹായിക്കാം?</p>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="ചോദിക്കൂ..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            let input = document.getElementById("user-input");
+            let messageArea = document.getElementById("chat-messages");
+            if (input.value.trim() === "") return;
+
+            const userText = input.value;
+            let userDiv = document.createElement("p");
+            userDiv.className = "user-msg";
+            userDiv.textContent = userText;
+            messageArea.appendChild(userDiv);
+            input.value = "";
+
+            let botDiv = document.createElement("p");
+            botDiv.className = "bot-msg";
+            botDiv.textContent = "ചിന്തിക്കുന്നു...";
+            messageArea.appendChild(botDiv);
+            messageArea.scrollTop = messageArea.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userText })
+                });
+                const data = await response.json();
+                botDiv.textContent = data.reply;
+            } catch (error) {
+                botDiv.textContent = "Error: AI ലഭ്യമല്ല.";
+            }
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
+    </script>
+</body>
+</html>
