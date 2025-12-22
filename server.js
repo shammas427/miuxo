@@ -40,3 +40,7 @@ app.post('/ai', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+import dotenv from 'dotenv';
+dotenv.config();
+
+const apiKey = process.env.OPENAI_API_KEY;
