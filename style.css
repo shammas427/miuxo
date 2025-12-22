@@ -26,3 +26,71 @@ body.dark-theme .container {
 body.dark-theme p {
     color: #ccc;
 }
+.chat-box {
+    width: 350px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    margin-top: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #4a00e0;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.chat-messages {
+    height: 250px;
+    padding: 15px;
+    overflow-y: auto;
+    text-align: left;
+    background: #f9f9f9;
+}
+
+.bot-msg {
+    background: #e1e1e1;
+    padding: 8px 12px;
+    border-radius: 15px 15px 15px 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.user-msg {
+    background: #4a00e0;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 15px 15px 0 15px;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    text-align: right;
+    font-size: 14px;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.chat-input-area button {
+    background: #4a00e0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
