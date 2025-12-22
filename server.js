@@ -71,3 +71,19 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`MIUXO AI Running on ${PORT}`));
+const express = require('express');
+const app = express();
+app.use(express.json());
+app.use(express.static(__dirname));
+
+app.post('/api/chat', async (req, res) => {
+    const userMessage = req.body.message;
+    
+    // ഇവിടെ AI API (Gemini/OpenAI) കണക്ട് ചെയ്യാം. 
+    // ഇപ്പോൾ ഒരു താൽക്കാലിക മറുപടി നൽകുന്നു.
+    const aiReply = "MIUXO AI നിങ്ങളെ സഹായിക്കാൻ തയ്യാറാണ്. നിങ്ങൾ ചോദിച്ചത്: " + userMessage;
+    
+    res.json({ reply: aiReply });
+});
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
