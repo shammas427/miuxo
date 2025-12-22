@@ -1,17 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Chat Web</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>എന്റെ AI വെബ്സൈറ്റ്</title>
+    <style>
+        /* വെബ്സൈറ്റിന്റെ ഡിസൈൻ (CSS) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 { color: #007bff; }
+        p { color: #555; line-height: 1.6; }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .btn:hover { background-color: #0056b3; }
+    </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div id="chat-box"></div>
-    <input type="text" id="user-input" placeholder="Type your message...">
-    <button id="send-btn">Send</button>
-  </div>
-  <script src="script.js"></script>
+
+    <div class="container">
+        <h1>സ്വാഗതം! 👋</h1>
+        <p>ഇത് ഞാൻ <b>Visual Studio Code</b> ഉപയോഗിച്ച് നിർമ്മിച്ച ആദ്യത്തെ വെബ്സൈറ്റാണ്. AI സഹായത്തോടെയാണ് ഈ കോഡ് തയ്യാറാക്കിയത്.</p>
+        <button class="btn" onclick="showMessage()">ഇവിടെ ക്ലിക്ക് ചെയ്യൂ</button>
+    </div>
+
+    <script>
+        // ലളിതമായ ഒരു അലേർട്ട് മെസ്സേജ് (JavaScript)
+        function showMessage() {
+            alert("നിങ്ങൾ വിജയകരമായി വെബ്സൈറ്റ് നിർമ്മിച്ചു!");
+        }
+    </script>
+
 </body>
 </html>
