@@ -37,13 +37,37 @@ app.listen(PORT, () => {
     console.log(`🔗 Link: http://localhost:${PORT}`);
     console.log('-------------------------------------------\n');
 });
-// server.js-ൽ ചേർക്കാൻ
+const express = require('express');
+const path = require('path');
+const app = express();
+// Google AI ലൈബ്രറി ഇൻസ്റ്റാൾ ചെയ്യണം: npm install @google/generative-ai
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));
+
+// നിങ്ങളുടെ Gemini API Key ഇവിടെ നൽകുക
+const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
+
 app.post('/api/chat', async (req, res) => {
-    const userMessage = req.body.message;
-    
-    // ഇവിടെ നമുക്ക് യഥാർത്ഥ AI API (Gemini/OpenAI) ബന്ധിപ്പിക്കാം
-    // ഇപ്പോൾ ഒരു താൽക്കാലിക മറുപടി നൽകുന്നു
-    const aiReply = "MIUXO AI നിങ്ങളെ സഹായിക്കാൻ തയ്യാറാണ്. നിങ്ങൾ ചോദിച്ചത്: " + userMessage;
-    
-    res.json({ reply: aiReply });
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const prompt = req.body.message;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+
+        res.json({ reply: text });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ reply: "ക്ഷമിക്കണം, AI കണക്ഷനിൽ പ്രശ്നമുണ്ട്." });
+    }
 });
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`MIUXO AI Running on ${PORT}`));
