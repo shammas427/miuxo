@@ -14,3 +14,15 @@ p {
     color: #444;
     margin-bottom: 20px;
 }
+/* ഡാർക്ക് മോഡ് സ്റ്റൈൽ */
+body.dark-theme {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+body.dark-theme .container {
+    background: #2d2d2d;
+    color: white;
+}
+body.dark-theme p {
+    color: #ccc;
+}
