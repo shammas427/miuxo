@@ -1,35 +1,35 @@
-const express = require('express');
-const path = require('path');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+async function sendMessage() {
+    let input = document.getElementById("user-input");
+    let messageArea = document.getElementById("chat-messages");
 
-const app = express();
-app.use(express.json());
-app.use(express.static(__dirname));
+    if (input.value.trim() !== "") {
+        const userText = input.value;
+        
+        // ഉപയോക്താവിന്റെ മെസ്സേജ്
+        let userDiv = document.createElement("p");
+        userDiv.className = "user-msg";
+        userDiv.textContent = userText;
+        messageArea.appendChild(userDiv);
+        input.value = "";
 
-// നിങ്ങളുടെ ശരിയായ API Key ഇവിടെ നൽകുക
-const genAI = new GoogleGenerativeAI("AIzaSyBPba1wt-7Q7H2P9s2yJZcaB45YYHm5AyM");
+        // AI മറുപടിക്ക് കാക്കുന്നു
+        let botDiv = document.createElement("p");
+        botDiv.className = "bot-msg";
+        botDiv.textContent = "ചിന്തിക്കുന്നു...";
+        messageArea.appendChild(botDiv);
+        messageArea.scrollTop = messageArea.scrollHeight;
 
-app.post('/api/chat', async (req, res) => {
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const userPrompt = req.body.message;
-
-        const result = await model.generateContent(userPrompt);
-        const response = await result.response;
-        const text = response.text();
-
-        res.json({ reply: text });
-    } catch (error) {
-        console.error("AI Setup Error:", error);
-        res.status(500).json({ reply: "ക്ഷമിക്കണം, AI സെറ്റപ്പിൽ ഒരു പ്രശ്നമുണ്ട്!" });
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userText })
+            });
+            const data = await response.json();
+            botDiv.textContent = data.reply; // യഥാർത്ഥ മറുപടി വരുന്നു
+        } catch (error) {
+            botDiv.textContent = "Error: AI ബന്ധിപ്പിക്കാൻ സാധിച്ചില്ല!";
+        }
+        messageArea.scrollTop = messageArea.scrollHeight;
     }
-});
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 MIUXO AI സജീവമാണ്: http://localhost:${PORT}`);
-});
+}
